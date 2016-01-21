@@ -52,6 +52,11 @@ public class CamundaBpmProperties {
   private Rest rest = new Rest();
 
   /**
+   * authorization configuration
+   */
+  private Authorization authorization = new Authorization();
+
+  /**
    * @return the database
    */
   public Database getDatabase() {
@@ -177,6 +182,21 @@ public class CamundaBpmProperties {
    */
   public void setRest(Rest rest) {
     this.rest = rest;
+  }
+
+  /**
+   * @return the authorization
+   */
+  public Authorization getAuthorization() {
+    return authorization;
+  }
+
+  /**
+   * @param authorization
+   *          the authorization to set
+   */
+  public void setAuthorization(Authorization authorization) {
+    this.authorization = authorization;
   }
 
   public class Database {
@@ -431,6 +451,44 @@ public class CamundaBpmProperties {
      */
     public void setHandleTransaction(boolean handleTransaction) {
       this.handleTransaction = handleTransaction;
+    }
+
+  }
+
+  public static class Authorization {
+
+    private Boolean enabled;
+
+    private Boolean enabledForCustomCode;
+
+    /**
+     * @return the enabled
+     */
+    public Boolean getEnabled() {
+      return enabled;
+    }
+
+    /**
+     * @param enabled
+     *          the enabled to set
+     */
+    public void setEnabled(Boolean enabled) {
+      this.enabled = enabled;
+    }
+
+    /**
+     * @return the enabledForCustomCode
+     */
+    public Boolean getEnabledForCustomCode() {
+      return enabledForCustomCode;
+    }
+
+    /**
+     * @param enabledForCustomCode
+     *          the enabledForCustomCode to set
+     */
+    public void setEnabledForCustomCode(Boolean enabledForCustomCode) {
+      this.enabledForCustomCode = enabledForCustomCode;
     }
 
   }

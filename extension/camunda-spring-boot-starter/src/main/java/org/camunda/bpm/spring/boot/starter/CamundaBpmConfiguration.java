@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.camunda.bpm.engine.spring.SpringProcessEngineConfiguration;
+import org.camunda.bpm.spring.boot.starter.configuration.CamundaAuthorizationConfiguration;
 import org.camunda.bpm.spring.boot.starter.configuration.CamundaConfiguration;
 import org.camunda.bpm.spring.boot.starter.configuration.CamundaDatasourceConfiguration;
 import org.camunda.bpm.spring.boot.starter.configuration.CamundaDeploymentConfiguration;
@@ -14,6 +15,7 @@ import org.camunda.bpm.spring.boot.starter.configuration.CamundaJobConfiguration
 import org.camunda.bpm.spring.boot.starter.configuration.CamundaJpaConfiguration;
 import org.camunda.bpm.spring.boot.starter.configuration.CamundaProcessEngineConfiguration;
 import org.camunda.bpm.spring.boot.starter.configuration.condition.NeedsHistoryAutoConfigurationCondition;
+import org.camunda.bpm.spring.boot.starter.configuration.impl.DefaultAuthorizationConfiguration;
 import org.camunda.bpm.spring.boot.starter.configuration.impl.DefaultDatasourceConfiguration;
 import org.camunda.bpm.spring.boot.starter.configuration.impl.DefaultDeploymentConfiguration;
 import org.camunda.bpm.spring.boot.starter.configuration.impl.DefaultHistoryConfiguration;
@@ -122,5 +124,11 @@ public class CamundaBpmConfiguration {
   @ConditionalOnMissingBean(CamundaDeploymentConfiguration.class)
   public static CamundaDeploymentConfiguration camundaDeploymentConfiguration() {
     return new DefaultDeploymentConfiguration();
+  }
+
+  @Bean
+  @ConditionalOnMissingBean(CamundaAuthorizationConfiguration.class)
+  public static CamundaAuthorizationConfiguration camundaAuthorizationConfiguration() {
+    return new DefaultAuthorizationConfiguration();
   }
 }

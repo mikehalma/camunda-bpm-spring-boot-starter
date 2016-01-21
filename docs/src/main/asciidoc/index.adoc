@@ -271,6 +271,14 @@ The default camunda URLs are:
 |JPA handle transaction
 |`true`
 
+|`{properties-prefix}.authorization.enabled`
+|authorization enabled
+|camunda default value
+
+|`{properties-prefix}.authorization.enabled-for-custom-code`
+|authorization enabled for custom code
+|`true`
+
 |`management.health.camunda.enabled`
 |enables default camunda health indicators
 |`true`
