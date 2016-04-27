@@ -516,7 +516,8 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </li>
 <li><a href="#_web_applications">4. Web Applications</a></li>
-<li><a href="#properties">5. Camunda application properties</a></li>
+<li><a href="#_using_the_processapplication">5. Using the ProcessApplication</a></li>
+<li><a href="#properties">6. Camunda application properties</a></li>
 </ul>
 </div>
 </div>
@@ -871,7 +872,31 @@ To disable this you have to add <code>camunda.bpm.webapp.index-redirect-enabled=
 </div>
 </div>
 <div class="sect1">
-<h2 id="properties">5. Camunda application properties</h2>
+<h2 id="_using_the_processapplication">5. Using the ProcessApplication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, the camunda-spring-boot-starter is configured to use the SpringProcessEngineConfiguration auto deployment feature.
+Since 1.2.0 you also have the possibility to do so via SpringBooProcessApplication. This disables the SpringProcessEngineConfiguration
+auto-deploy feature and instead uses the required "META-INF/processes.xml"  as an indicator for resource scanning.
+This also allows all processes.xml configuration features described here.</p>
+</div>
+<div class="paragraph">
+<p>To use it, extend the ProcessApplication with your main application class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@SpringBootApplication</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyApplication</span> <span class="directive">extends</span> SpringBootProcessApplication{
+
+...
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="properties">6. Camunda application properties</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -989,7 +1014,7 @@ To disable this you have to add <code>camunda.bpm.webapp.index-redirect-enabled=
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-27 21:51:13 +02:00
+Last updated 2016-04-27 22:01:12 +02:00
 </div>
 </div>
 </body>
