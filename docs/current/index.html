@@ -929,7 +929,7 @@ This also allows all processes.xml configuration features described here.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>camunda.bpm.database.schema-update</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">if automatic schema update should be applied</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">if automatic schema update should be applied, use one of [true, false, create, create-drop, drop-create]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
@@ -954,13 +954,13 @@ This also allows all processes.xml configuration features described here.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>camunda.bpm.auto-deployment-enabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">if processes should be auto deployed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">if processes should be auto deployed. This is disabled when using the SpringBootProcessApplication</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>camunda.bpm.deployment-resource-pattern</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">location for auto deployment</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>classpath*:*<strong>/</strong>.bpmn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>classpath*:<strong>/<strong>.bpmn, classpath</strong>:</strong>/<strong>.bpmn20.xml, classpath</strong>:<strong>/<strong>.dmn, classpath</strong>:</strong>/<strong>.dmn11.xml, classpath</strong>:<strong>/<strong>.cmmn, classpath</strong>:</strong>/<strong>.cmmn10.xml, classpath</strong>:*<strong>/</strong>.cmmn11.xml</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>camunda.bpm.jpa.enabled</code></p></td>
@@ -1014,7 +1014,7 @@ This also allows all processes.xml configuration features described here.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-27 22:22:09 +02:00
+Last updated 2016-04-27 23:21:14 +02:00
 </div>
 </div>
 </body>
