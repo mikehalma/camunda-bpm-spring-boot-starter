@@ -1,12 +1,12 @@
 package org.camunda.bpm.spring.boot.starter.runlistener;
 
-import java.util.Properties;
-
 import org.camunda.bpm.spring.boot.starter.CamundaBpmVersion;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertiesPropertySource;
+
+import java.util.Properties;
 
 public class PropertiesListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 

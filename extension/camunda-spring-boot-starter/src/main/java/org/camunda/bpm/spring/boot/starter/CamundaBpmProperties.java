@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import lombok.Data;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.camunda.bpm.application.impl.metadata.ProcessArchiveXmlImpl;
@@ -24,6 +25,7 @@ import org.camunda.bpm.engine.repository.ResumePreviousBy;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.Assert;
 
+@Data
 @ConfigurationProperties("camunda.bpm")
 public class CamundaBpmProperties {
 
@@ -46,152 +48,58 @@ public class CamundaBpmProperties {
    */
   private String processEngineName = ProcessEngines.NAME_DEFAULT;
 
-  public String getProcessEngineName() {
-    return processEngineName;
-  }
-
-  public void setProcessEngineName(String processEngineName) {
-    this.processEngineName = processEngineName;
-  }
-
   /**
    * the history level to use
    */
   private String historyLevel;
-
-  public String getHistoryLevel() {
-    return historyLevel;
-  }
-
-  public void setHistoryLevel(String historyLevel) {
-    this.historyLevel = historyLevel;
-  }
 
   /**
    * the default history level to use when 'historyLevel' is 'auto'
    */
   private String historyLevelDefault;
 
-  public String getHistoryLevelDefault() {
-    return historyLevelDefault;
-  }
-
-  public void setHistoryLevelDefault(String historyLevelDefault) {
-    this.historyLevelDefault = historyLevelDefault;
-  }
-
   /**
    * enables auto deployment of processes
    */
   private boolean autoDeploymentEnabled = true;
-
-  public boolean isAutoDeploymentEnabled() {
-    return autoDeploymentEnabled;
-  }
-
-  public void setAutoDeploymentEnabled(boolean autoDeploymentEnabled) {
-    this.autoDeploymentEnabled = autoDeploymentEnabled;
-  }
 
   /**
    * resource pattern for locating process sources
    */
   private String[] deploymentResourcePattern = initDeploymentResourcePattern();
 
-  public String[] getDeploymentResourcePattern() {
-    return deploymentResourcePattern;
-  }
-
-  public void setDeploymentResourcePattern(String[] deploymentResourcePattern) {
-    this.deploymentResourcePattern = deploymentResourcePattern;
-  }
-
   /**
    * metrics configuration
    */
   private Metrics metrics = new Metrics();
-
-  public Metrics getMetrics() {
-    return metrics;
-  }
-
-  public void setMetrics(Metrics metrics) {
-    this.metrics = metrics;
-  }
 
   /**
    * database configuration
    */
   private Database database = new Database();
 
-  public Database getDatabase() {
-    return database;
-  }
-
-  public void setDatabase(Database database) {
-    this.database = database;
-  }
-
   /**
    * JPA configuration
    */
   private Jpa jpa = new Jpa();
-
-  public Jpa getJpa() {
-    return jpa;
-  }
-
-  public void setJpa(Jpa jpa) {
-    this.jpa = jpa;
-  }
 
   /**
    * job execution configuration
    */
   private JobExecution jobExecution = new JobExecution();
 
-  public JobExecution getJobExecution() {
-    return jobExecution;
-  }
-
-  public void setJobExecution(JobExecution jobExecution) {
-    this.jobExecution = jobExecution;
-  }
-
   /**
    * webapp configuration
    */
   private Webapp webapp = new Webapp();
-
-  public Webapp getWebapp() {
-    return webapp;
-  }
-
-  public void setWebapp(Webapp webapp) {
-    this.webapp = webapp;
-  }
 
   /**
    * process application/processes.xml configuration
    */
   private Application application = new Application();
 
-  public Application getApplication() {
-    return application;
-  }
-
-  public void setApplication(Application application) {
-    this.application = application;
-  }
-
-  static class NestedProperty {
-    @Override
-    public String toString() {
-      return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
-  }
-
-  public static class Database extends NestedProperty {
+  @Data
+  public static class Database {
     public static final List<String> SCHEMA_UPDATE_VALUES = Arrays.asList(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE,
         ProcessEngineConfiguration.DB_SCHEMA_UPDATE_FALSE, ProcessEngineConfigurationImpl.DB_SCHEMA_UPDATE_CREATE,
         ProcessEngineConfiguration.DB_SCHEMA_UPDATE_CREATE_DROP, ProcessEngineConfigurationImpl.DB_SCHEMA_UPDATE_DROP_CREATE);
@@ -212,13 +120,6 @@ public class CamundaBpmProperties {
     private String tablePrefix;
 
     /**
-     * @return the schemaUpdate
-     */
-    public String getSchemaUpdate() {
-      return schemaUpdate;
-    }
-
-    /**
      * @param schemaUpdate
      *          the schemaUpdate to set
      */
@@ -227,39 +128,10 @@ public class CamundaBpmProperties {
       this.schemaUpdate = schemaUpdate;
     }
 
-    /**
-     * @return the type
-     */
-    public String getType() {
-      return type;
-    }
-
-    /**
-     * @param type
-     *          the type to set
-     */
-    public void setType(String type) {
-      this.type = type;
-    }
-
-    /**
-     * @return the tablePrefix
-     */
-    public String getTablePrefix() {
-      return tablePrefix;
-    }
-
-    /**
-     * @param tablePrefix
-     *          the tablePrefix to set
-     */
-    public void setTablePrefix(String tablePrefix) {
-      this.tablePrefix = tablePrefix;
-    }
-
   }
 
-  public static class JobExecution extends NestedProperty {
+  @Data
+  public static class JobExecution {
 
     /**
      * enables job execution
@@ -275,77 +147,16 @@ public class CamundaBpmProperties {
      * if job execution is deployment aware
      */
     private boolean deploymentAware;
-
-    /**
-     * @return the enabled
-     */
-    public boolean isEnabled() {
-      return enabled;
-    }
-
-    /**
-     * @param enabled
-     *          the enabled to set
-     */
-    public void setEnabled(boolean enabled) {
-      this.enabled = enabled;
-    }
-
-    /**
-     * @return the active
-     */
-    public boolean isActive() {
-      return active;
-    }
-
-    /**
-     * @param active
-     *          the active to set
-     */
-    public void setActive(boolean active) {
-      this.active = active;
-    }
-
-    /**
-     * @return the deploymentAware
-     */
-    public boolean isDeploymentAware() {
-      return deploymentAware;
-    }
-
-    /**
-     * @param deploymentAware
-     *          the deploymentAware to set
-     */
-    public void setDeploymentAware(boolean deploymentAware) {
-      this.deploymentAware = deploymentAware;
-    }
-
   }
 
-  public static class Metrics extends NestedProperty {
-
+  @Data
+  public static class Metrics {
     private boolean enabled = true;
     private boolean dbReporterActivate = true;
-
-    public boolean isEnabled() {
-      return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-      this.enabled = enabled;
-    }
-
-    public boolean isDbReporterActivate() {
-      return dbReporterActivate;
-    }
-
-    public void setDbReporterActivate(boolean dbReporterActivate) {
-      this.dbReporterActivate = dbReporterActivate;
-    }
   }
 
-  public static class Jpa extends NestedProperty {
+  @Data
+  public static class Jpa {
     /**
      * enables JPA
      */
@@ -365,82 +176,15 @@ public class CamundaBpmProperties {
      * handle transactions by JPA
      */
     private boolean handleTransaction = true;
-
-    /**
-     * @return the enabled
-     */
-    public boolean isEnabled() {
-      return enabled;
-    }
-
-    /**
-     * @param enabled
-     *          the enabled to set
-     */
-    public void setEnabled(boolean enabled) {
-      this.enabled = enabled;
-    }
-
-    /**
-     * @return the persistenceUnitName
-     */
-    public String getPersistenceUnitName() {
-      return persistenceUnitName;
-    }
-
-    /**
-     * @param persistenceUnitName
-     *          the persistenceUnitName to set
-     */
-    public void setPersistenceUnitName(String persistenceUnitName) {
-      this.persistenceUnitName = persistenceUnitName;
-    }
-
-    /**
-     * @return the closeEntityManager
-     */
-    public boolean isCloseEntityManager() {
-      return closeEntityManager;
-    }
-
-    /**
-     * @param closeEntityManager
-     *          the closeEntityManager to set
-     */
-    public void setCloseEntityManager(boolean closeEntityManager) {
-      this.closeEntityManager = closeEntityManager;
-    }
-
-    /**
-     * @return the handleTransaction
-     */
-    public boolean isHandleTransaction() {
-      return handleTransaction;
-    }
-
-    /**
-     * @param handleTransaction
-     *          the handleTransaction to set
-     */
-    public void setHandleTransaction(boolean handleTransaction) {
-      this.handleTransaction = handleTransaction;
-    }
-
   }
 
-  public static class Webapp extends NestedProperty {
+  @Data
+  public static class Webapp {
     private boolean indexRedirectEnabled = true;
-
-    public boolean isIndexRedirectEnabled() {
-      return indexRedirectEnabled;
-    }
-
-    public void setIndexRedirectEnabled(boolean indexRedirectEnabled) {
-      this.indexRedirectEnabled = indexRedirectEnabled;
-    }
   }
 
-  public static class Application extends NestedProperty {
+  @Data
+  public static class Application {
     /**
      * Indicates whether the undeployment of the process archive should trigger
      * deleting the process engine deployment. If the process engine deployment
@@ -474,46 +218,6 @@ public class CamundaBpmProperties {
      */
     private String resumePreviousBy = ResumePreviousBy.RESUME_BY_PROCESS_DEFINITION_KEY;
 
-    public boolean isDeleteUponUndeploy() {
-      return isDeleteUponUndeploy;
-    }
-
-    public void setDeleteUponUndeploy(boolean deleteUponUndeploy) {
-      isDeleteUponUndeploy = deleteUponUndeploy;
-    }
-
-    public boolean isScanForProcessDefinitions() {
-      return isScanForProcessDefinitions;
-    }
-
-    public void setScanForProcessDefinitions(boolean scanForProcessDefinitions) {
-      isScanForProcessDefinitions = scanForProcessDefinitions;
-    }
-
-    public boolean isDeployChangedOnly() {
-      return isDeployChangedOnly;
-    }
-
-    public void setDeployChangedOnly(boolean deployChangedOnly) {
-      isDeployChangedOnly = deployChangedOnly;
-    }
-
-    public boolean isResumePreviousVersions() {
-      return isResumePreviousVersions;
-    }
-
-    public void setResumePreviousVersions(boolean resumePreviousVersions) {
-      isResumePreviousVersions = resumePreviousVersions;
-    }
-
-    public String getResumePreviousBy() {
-      return resumePreviousBy;
-    }
-
-    public void setResumePreviousBy(String resumePreviousBy) {
-      this.resumePreviousBy = resumePreviousBy;
-    }
-
     public List<ProcessArchiveXml> getProcessArchives() {
       List<ProcessArchiveXml> processArchives = new ArrayList<ProcessArchiveXml>();
 
@@ -536,8 +240,4 @@ public class CamundaBpmProperties {
 
   }
 
-  @Override
-  public String toString() {
-    return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-  }
 }
